@@ -1,73 +1,73 @@
 <template>
 
   <main class="container">
-    <!--    <div class="p-4 p-md-5 mb-4 mt-5 text-black-50 border border-dark rounded  row align-items-center">-->
-    <!--      <div class="col-md-5 px-0">-->
-    <!--        <h1 class="display-4 fw-bold">이번주 경기일정</h1>-->
-    <!--        <p class="lead my-3 fw-bold">-->
-    <!--          {{ date(this.gameInfo.startDate) }} {{ this.gameInfo.title }} • {{ this.gameInfo.location }}</p>-->
-    <!--        <p class="lead mb-0 text-black-50 fw-bold">-->
-    <!--          참석 <b class="text-primary">{{ this.gameInfo.voteCount }}</b>-->
-    <!--          불참 <b class="text-danger">{{ this.gameInfo.notVoteCount }}</b>-->
-    <!--        </p>-->
-    <!--        <p>-->
-    <!--          <button type="button" class="btn btn-dark btn-lg mt-5" style="padding-left: 2.5rem; padding-right: 2.5rem;">-->
-    <!--            투표하러 가기-->
-    <!--          </button>-->
-    <!--        </p>-->
-    <!--      </div>-->
-
-    <!--      <div class="col p-4 d-flex flex-column position-static align-items-start">-->
-    <!--        <h1 class="display-4 fw-bold">공지사항</h1>-->
-    <!--        <h4 v-for="item in this.notices" :key="item" class="mb-1">-->
-    <!--          <a href="#" class="me-auto mb-2 mb-md-0">{{ item.title }}</a>-->
-    <!--        </h4>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
     <div class="row mb-2 mt-5">
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">이번주 경기일정</strong>
-            <h3 class="mb-0">Featured post</h3>
-            <div class="mb-1 text-muted">Nov 12</div>
-            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-              additional content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
-          </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                 aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>
-              Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c"/>
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>
+            <strong class="d-inline-block mb-3 text-black-50">이번주 경기일정</strong>
+            <h3 class="mb-3 fw-bold">{{ gameInfo.title }}</h3>
+            <p class="card-text mb-3 fw-bold">
+              <template v-if="gameInfo.otherTeam === null || gameInfo.otherTeam === ''">
+                {{ gameInfo.team1 }} VS {{ gameInfo.team2 }}
+              </template>
+              <template v-else>
+                {{ gameInfo.otherTeam }}
+              </template>
 
+            </p>
+            <div class="mb-3 text-muted"> {{ date(gameInfo.startDate) }} • {{ gameInfo.location }}</div>
+            <p class="card-text mb-3">
+              참석 <b class="text-primary">{{ gameInfo.voteCount }}</b>
+              불참 <b class="text-danger">{{ gameInfo.notVoteCount }}</b>
+            </p>
           </div>
+
+          <div class="col-auto d-none d-lg-block">
+            <button type="button" class="btn btn-dark btn-lg w-100 h-100"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">
+              투표하기
+            </button>
+          </div>
+
         </div>
       </div>
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
-            <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
-              content.</p>
-            <a href="#" class="stretched-link">Continue reading</a>
+            <strong class="d-inline-block mb-3 text-black-50">공지사항</strong>
+            <p class="card-text mb-auto" v-for="item in notices" :key="item">
+              <a href="#" class="text-decoration-none text-muted"> {{ item.title }} </a>
+            </p>
           </div>
-          <div class="col-auto d-none d-lg-block">
-            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
-                 aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>
-              Placeholder</title>
-              <rect width="100%" height="100%" fill="#55595c"/>
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>
 
+          <div class="col-auto d-none d-lg-block">
+            <button type="button" class="btn btn-dark btn-lg h-100"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem; min-width: 120px">
+              더보기
+            </button>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-3 text-black-50">지난 경기 결과</strong>
+        </div>
+
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" >
+            <div class="col p-4 d-flex flex-column position-static" v-for="item in matchResult" :key="item">
+              <strong class="d-inline-block mb-3 text-black-50"> {{ item.win }} VS {{ item.lose }} </strong>
+              <p class="card-text mb-auto">
+                <a href="#" class="text-decoration-none text-muted"> {{ item.winScore }} : {{ item.loseScore }}</a>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
     </div>
   </main>
 </template>
@@ -82,12 +82,14 @@ export default {
   data() {
     return {
       gameInfo: {},
-      notices: []
+      notices: [],
+      matchResult: []
     }
   },
   created() {
     this.getGameInfo()
     this.getNoticeInfo()
+    this.getMatchResult()
   },
   methods: {
     getGameInfo() {
@@ -100,6 +102,12 @@ export default {
       http.get("dashboards/notice")
           .then(response => {
             this.notices = response.data.data
+          })
+    },
+    getMatchResult() {
+      http.get("dashboards/match")
+          .then(response => {
+            this.matchResult = response.data.data
           })
     },
     date(value) {

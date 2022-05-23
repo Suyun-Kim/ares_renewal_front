@@ -3,7 +3,7 @@
 
   <header class="p-3 mb-3 border-bottom">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="#">ARES FC</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,17 @@
               <a class="nav-link" href="#">팀관리</a>
             </li>
           </ul>
+          <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              <text class="text-white me-2">김수윤 (정회원)</text>
+              <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+              <li><a class="dropdown-item" href="#">마이페이지</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">로그아웃</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
