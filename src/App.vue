@@ -1,15 +1,29 @@
+
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <div id="header">
+      <main-header></main-header>
+    </div>
+
+    <router-view/>
+
+    <div id="footer">
+      <main-footer></main-footer>
+    </div>
+
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MainHeader from "@/components/include/MainHeader";
+import MainFooter from "@/components/include/MainFooter";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // eslint-disable-next-line vue/no-unused-components
+    MainHeader, MainFooter
+
   }
 }
 </script>
@@ -21,6 +35,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
+
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</html>
