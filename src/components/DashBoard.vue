@@ -7,7 +7,7 @@
 
 <script>
 
-import http from "@/http-common";
+//import http from "@/http-common";
 import moment from 'moment';
 
 export default {
@@ -24,10 +24,7 @@ export default {
   },
   methods: {
     getGameInfo() {
-      http.get('dashboards/game')
-          .then(response => {
-            this.gameInfo = response.data.data
-          })
+
     },
     date(value) {
       return moment(value).format('YYYY-MM-DD')

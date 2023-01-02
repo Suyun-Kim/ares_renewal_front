@@ -17,15 +17,28 @@
               <div class="sign-in-htm">
                 <div class="group">
                   <label for="memberId" class="label">Username</label>
-                  <input v-model="auth.memberId" id="memberId" type="text" class="input" placeholder="회원 이름">
+                  <input
+                      v-model="auth.memberId"
+                      id="memberId"
+                      type="text"
+                      class="input"
+                      placeholder="회원 이름">
                 </div>
                 <div class="group">
                   <label for="memberPwd" class="label">Password</label>
-                  <input v-model="auth.memberPwd" id="memberPwd" type="password" class="input" placeholder="전화번호 뒷 4자리">
+                  <input
+                      v-model="auth.memberPwd"
+                      id="memberPwd"
+                      type="password"
+                      class="input"
+                      placeholder="전화번호 뒷 4자리">
                 </div>
 
                 <div class="group mt-5">
-                  <input type="submit" class="button" value="로그인" @click="login">
+                  <input
+                        type="button" class="button" value="로그인"
+                        v-bind:disabled="auth.memberId === '' && auth.memberPwd === ''"
+                        @click="login">
                 </div>
               </div>
             </div>
@@ -63,28 +76,16 @@ export default {
         memberPwd: this.auth.memberPwd
       };
 
-      let error = false;
+      this.$store.dispatch('LOGIN', {data})
+          .then(() => this.redirect())
+          .catch((error) => {
+            console.log(error)
+            this.$refs.alert.showAlert('error', error, '로그인 실패')
+          })
 
-      if (this.memberId === '') {
-        this.$refs.alert.showAlert('Error', '회원이름을 입력해주세요.')
-        this.error = true;
-
-      } else if (this.memberPwd === '') {
-        this.$refs.alert.showAlert('Error', '비밀번호를 입력해주세요.')
-        this.error = true;
-      }
-
-      if (!error) {
-        this.$store.dispatch('LOGIN', {data})
-            .then(() => this.redirect())
-            .catch((error) => {
-              console.log(error)
-              this.$refs.alert.showAlert('error', error, '로그인 실패')
-            })
-      }
     },
     redirect() {
-      //this.$router.push('/')
+      this.$router.push('/')
     }
   }
 }

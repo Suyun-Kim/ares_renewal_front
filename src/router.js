@@ -1,17 +1,20 @@
-import { createWebHistory, createRouter } from "vue-router";
+import {createWebHistory, createRouter} from "vue-router";
 import LoginPage from "@/components/LoginPage";
 import NoticeWrite from "@/components/NoticeWrite";
 import NoticeMain from "@/components/NoticeMain";
 import DashBoard from "@/components/DashBoard";
 import GameMain from "@/components/GameMain";
 
-import { useStore } from "vuex"
+import {useStore} from "vuex"
 
 const requireAuth = () => (from, to, next) => {
-    if (useStore.state.authToken !== null) {
+    if (useStore.state.isLogin) {
+        console.log('state :: ', useStore.state);
         return next();
+    } else {
+        next('/login');
     }
-    next('/login');
+
 
 }
 
@@ -19,7 +22,7 @@ const routes = [
     {
         path: '/login',
         name: 'LoginPage',
-        component : LoginPage
+        component: LoginPage
     },
     {
         path: '/notice',
@@ -35,7 +38,7 @@ const routes = [
     },
     {
         path: '/',
-        name: 'GameMain',
+        name: 'DashBoard',
         component: DashBoard,
         beforeEnter: requireAuth
     },

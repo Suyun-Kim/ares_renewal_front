@@ -1,9 +1,9 @@
-import { createStore } from "vuex";
+import {createStore} from "vuex";
 import http from '../http-common'
 import axios from "axios";
 
 const enhanceAccessToeken = () => {
-    const { accessToken } = localStorage
+    const {accessToken} = localStorage
     if (!accessToken) return
     axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`
 }
@@ -15,7 +15,8 @@ const store = createStore({
         authToken: null,
         memberIdx: null,
         memberName: null,
-        memberGrade: null
+        memberGrade: null,
+        isLogin: false
     },
     getters: {},
     mutations: {
@@ -24,25 +25,27 @@ const store = createStore({
             state.memberIdx = member.id
             state.memberGrade = member.grade
             state.memberName = member.memberName
+            state.isLogin = true
 
             localStorage.authToken = member.authToken
         },
         LOGOUT(state) {
             state.authToken = null
+            state.isLogin = false
+
+            localStorage.removeItem('authToken')
         }
     },
     actions: {
-        LOGIN( {commit}, { data } ) {
+        LOGIN({commit}, {data}) {
             return new Promise((resolve, reject) => {
                 http.post('/auth', data)
                     .then(response => {
-                        console.log("response :: " + response)
                         commit('LOGIN', response.data.data)
                         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.data.authToken}`;
-                        console.log(response)
                         resolve(response)
                     })
-                    .catch(error =>{
+                    .catch(error => {
                         reject(error.response.data.error.message)
                     })
 
