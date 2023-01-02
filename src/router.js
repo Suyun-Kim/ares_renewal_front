@@ -1,30 +1,48 @@
 import { createWebHistory, createRouter } from "vue-router";
 import LoginPage from "@/components/LoginPage";
-import NoticeWrite from "./components/NoticeWrite";
+import NoticeWrite from "@/components/NoticeWrite";
+import NoticeMain from "@/components/NoticeMain";
 import DashBoard from "@/components/DashBoard";
+import GameMain from "@/components/GameMain";
+
+import { useStore } from "vuex"
 
 const requireAuth = () => (from, to, next) => {
-    const isAuthenticated = false
-    if (isAuthenticated) return next()
-    next('/login')
+    if (useStore.state.authToken !== null) {
+        return next();
+    }
+    next('/login');
+
 }
 
 const routes = [
     {
         path: '/login',
-        name: '/LoginPage',
+        name: 'LoginPage',
         component : LoginPage
+    },
+    {
+        path: '/notice',
+        name: 'NoticeMain',
+        component: NoticeMain,
+        beforeEnter: requireAuth
     },
     {
         path: '/notice/write',
         name: 'NoticeWrite',
         component: NoticeWrite,
-        beforeEnter: requireAuth()
+        beforeEnter: requireAuth
     },
     {
         path: '/',
-        name: 'DashBoard',
+        name: 'GameMain',
         component: DashBoard,
+        beforeEnter: requireAuth
+    },
+    {
+        path: '/game',
+        name: 'GameMain',
+        component: GameMain,
         beforeEnter: requireAuth
     }
 ]

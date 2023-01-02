@@ -1,17 +1,15 @@
-
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <div id="app">
-    <div id="header">
-      <main-header></main-header>
-    </div>
-
     <router-view/>
-
-    <div id="footer">
-      <main-footer></main-footer>
-    </div>
-
   </div>
+
+  <div id="footer" v-if="$route.name !== 'LoginPage'">
+    <main-footer></main-footer>
+  </div>
+
+
 </template>
 
 <script>

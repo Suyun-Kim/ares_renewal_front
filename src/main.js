@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-3/dist/bootstrap-vue-3.css'
 import CKEditor from '@ckeditor/ckeditor5-vue'
 import axios from 'axios'
-
 const app = createApp(App)
 
 app.config.globalProperties.$axios = axios

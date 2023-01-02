@@ -1,15 +1,60 @@
 <template>
-  <div class="container fixed-bottom">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-          <img class="bi" width="30" height="24" src="../../assets/footer_logo.jpg"/>
-        </a>
-        <span class="mb-3 mb-md-0 text-muted"> ARES UNITED FOOTBALL CLUB Since.2000</span>
-      </div>
-    </footer>
-  </div>
+  <footer class="text-center text-white fixed-bottom">
+    <!-- Grid container -->
+    <div class="btn-holder container">
+      <!-- Facebook -->
+      <a
+          class="btn btn-primary btn-floating m-1"
+          style="background-color: #3b5998;"
+          href="#!"
+          role="button"
+      ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a
+          class="btn btn-primary btn-floating m-1"
+          style="background-color: #55acee;"
+          href="#!"
+          role="button"
+      ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a
+          class="btn btn-primary btn-floating m-1"
+          style="background-color: #dd4b39;"
+          href="#!"
+          role="button"
+      ><i class="fab fa-google"></i
+      ></a>
+
+      <!-- Instagram -->
+      <a
+          class="btn btn-primary btn-floating m-1"
+          style="background-color: #ac2bac;"
+          href="#!"
+          role="button"
+      ><i class="fab fa-instagram"></i
+      ></a>
+
+      <!-- Linkedin -->
+      <a
+          class="btn btn-primary btn-floating m-1"
+          style="background-color: #0082ca;"
+          href="#!"
+          role="button"
+      ><i class="fab fa-linkedin-in"></i
+      ></a>
+      <!-- Github -->
+
+    </div>
+    <!-- Grid container -->
+
+  </footer>
 </template>
+
+
 
 <script>
 export default {
@@ -18,10 +63,26 @@ export default {
 </script>
 
 <style scoped>
+footer {
+  width: 100vw;
+  height: 60px;
+}
 
-.bi {
-  vertical-align: -.125em;
-  fill: currentColor;
+.btn-holder {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  font-size: 0;
+  text-align: center;
+  padding: 0!important;
+}
+
+.btn-holder .btn {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
 }
 
 </style>

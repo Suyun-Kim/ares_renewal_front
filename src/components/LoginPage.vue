@@ -1,59 +1,50 @@
 <template>
-  <section class="h-75" style="min-height: 800px">
-    <div class="container-fluid h-custom">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-3 col-lg-6 col-xl-5 m-lg-5">
-          <img src="../assets/login_logo.jpg" class="img-fluid w-75">
+
+  <main>
+
+    <div class="h-100">
+
+      <div class="login-wrap pt-5">
+        <div>
+          <img src="../assets/img/spartan.jpg" style="height: 150px;">
+          <h1 class="text-white pt-3">ARES</h1>
         </div>
-        <div class="col-md-8 col-lg-6 col-xl-4">
-          <form>
 
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-              <input type="text" v-model="auth.memberId" class="form-control form-control-lg w-50" placeholder="회원이름"/>
-            </div>
+        <div class="login-html">
 
-            <!-- Password input -->
-            <div class="form-outline mb-3">
-              <input type="password" v-model="auth.memberPwd" class="form-control form-control-lg w-50"
-                     placeholder="비밀번호"/>
-            </div>
+          <form class="signUp" id="signupForm">
+            <div class="login-form">
+              <div class="sign-in-htm">
+                <div class="group">
+                  <label for="memberId" class="label">Username</label>
+                  <input v-model="auth.memberId" id="memberId" type="text" class="input" placeholder="회원 이름">
+                </div>
+                <div class="group">
+                  <label for="memberPwd" class="label">Password</label>
+                  <input v-model="auth.memberPwd" id="memberPwd" type="password" class="input" placeholder="전화번호 뒷 4자리">
+                </div>
 
-            <div class="d-flex justify-content-between align-items-center">
-              <!-- Checkbox -->
-              <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3"/>
-                <label class="form-check-label" for="form2Example3">
-                  Remember me
-                </label>
+                <div class="group mt-5">
+                  <input type="submit" class="button" value="로그인" @click="login">
+                </div>
               </div>
             </div>
-
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-dark btn-lg" @click="login"
-                      style="padding-left: 2.5rem; padding-right: 2.5rem;"> Login
-              </button>
-              <p class="small fw-bold mt-2 pt-1 mb-0">회원 등록 시 아레스 운영진에게 문의 바랍니다.</p>
-            </div>
-
           </form>
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
   <vue-basic-alert :duration="300" :closeIn="3000" ref="alert"/>
 
 </template>
 
 <script>
-//import http from '../http-common'
 import VueBasicAlert from 'vue-basic-alert'
 
 export default {
   name: "LoginPage",
   components: {
-    // eslint-disable-next-line vue/no-unused-components
     VueBasicAlert
   },
   data() {
@@ -62,29 +53,92 @@ export default {
         memberId: '',
         memberPwd: ''
       },
-
     }
   },
   methods: {
     login() {
+
       let data = {
         memberId: this.auth.memberId,
         memberPwd: this.auth.memberPwd
       };
-      this.$store.dispatch('LOGIN', {data})
-          .then(() => this.redirect())
-          .catch((error) => {
-            console.log(error)
-            this.$refs.alert.showAlert('error', error, '로그인 실패')
-          })
+
+      let error = false;
+
+      if (this.memberId === '') {
+        this.$refs.alert.showAlert('Error', '회원이름을 입력해주세요.')
+        this.error = true;
+
+      } else if (this.memberPwd === '') {
+        this.$refs.alert.showAlert('Error', '비밀번호를 입력해주세요.')
+        this.error = true;
+      }
+
+      if (!error) {
+        this.$store.dispatch('LOGIN', {data})
+            .then(() => this.redirect())
+            .catch((error) => {
+              console.log(error)
+              this.$refs.alert.showAlert('error', error, '로그인 실패')
+            })
+      }
     },
     redirect() {
-      this.$router.push('/')
+      //this.$router.push('/')
     }
   }
 }
 </script>
 
 <style scoped>
+
+@import "../assets/css/login.css";
+
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 760px) {
+  .form-control {
+    width: 100% !important;
+  }
+}
+
 
 </style>
