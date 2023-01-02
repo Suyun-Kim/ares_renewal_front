@@ -1,20 +1,17 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
   <footer class="text-center text-white fixed-bottom">
     <!-- Grid container -->
     <div class="btn-holder container">
       <!-- Facebook -->
-      <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #3b5998;"
-          href="#!"
-          role="button"
-      ><i class="fab fa-facebook-f"></i
-      ></a>
+      <a class="btn m-1" href="#!" role="button">
+        <img src="../../assets/img/menu_home.png" style="height: 150px;" alt="">
+      </a>
 
-      <!-- Twitter -->
       <a
           class="btn btn-primary btn-floating m-1"
-          style="background-color: #55acee;"
           href="#!"
           role="button"
       ><i class="fab fa-twitter"></i
@@ -55,7 +52,6 @@
 </template>
 
 
-
 <script>
 export default {
   name: "MainFooter"
@@ -75,7 +71,7 @@ footer {
   height: 100%;
   font-size: 0;
   text-align: center;
-  padding: 0!important;
+  padding: 0 !important;
 }
 
 .btn-holder .btn {
