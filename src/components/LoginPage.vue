@@ -2,11 +2,11 @@
 
   <main>
 
-    <div class="h-100">
+    <div class="h-100 bg-black">
 
       <div class="login-wrap pt-5">
         <div>
-          <img src="../assets/img/spartan.jpg" style="height: 150px;">
+          <img src="../assets/img/ares_logo.png" style="height: 13em;">
           <h1 class="text-white pt-3">ARES</h1>
         </div>
 
@@ -104,7 +104,7 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 

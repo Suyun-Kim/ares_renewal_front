@@ -1,30 +1,10 @@
 <template>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <div id="app">
-    <router-view/>
-  </div>
-
-  <div id="footer" v-if="$route.name !== 'LoginPage'">
-    <main-footer></main-footer>
-  </div>
-
-
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-import MainHeader from "@/components/include/MainHeader";
-import MainFooter from "@/components/include/MainFooter";
-
-export default {
-  name: 'App',
-  components: {
-    // eslint-disable-next-line vue/no-unused-components
-    MainHeader, MainFooter
-
-  }
-}
-</script>
 
 <style>
 #app {
@@ -34,8 +14,17 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-</style>
 
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</html>
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>

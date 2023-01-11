@@ -38,6 +38,13 @@ h3{
     text-transform: uppercase;
 }
 
+h4{
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
 
 section{
     position: absolute;
@@ -181,13 +188,6 @@ section{
 
 .item3 > div:nth-child(2n){
     border-right:none;
-}
-
-.team_r{
-    color:#3c7ca2;
-}
-.team_s{
-    color:#992853;
 }
 
 /* menu */

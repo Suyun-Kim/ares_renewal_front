@@ -8,14 +8,12 @@ import GameMain from "@/components/GameMain";
 import {useStore} from "vuex"
 
 const requireAuth = () => (from, to, next) => {
+
     if (useStore.state.isLogin) {
-        console.log('state :: ', useStore.state);
         return next();
     } else {
         next('/login');
     }
-
-
 }
 
 const routes = [
@@ -46,6 +44,7 @@ const routes = [
         path: '/game',
         name: 'GameMain',
         component: GameMain,
+        props: true,
         beforeEnter: requireAuth
     }
 ]

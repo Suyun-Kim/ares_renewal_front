@@ -2,51 +2,36 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  <footer class="text-center text-white fixed-bottom">
+  <footer class="text-center text-white fixed-bottom bg-white">
     <!-- Grid container -->
-    <div class="btn-holder container">
-      <!-- Facebook -->
-      <a class="btn m-1" href="#!" role="button">
-        <img src="../../assets/img/menu_home.png" style="height: 150px;" alt="">
+    <div class="btn-holder container  border border-top">
+
+      <!-- 홈 -->
+      <a class="btn m-1" :href="this.mainUrl" role="button">
+        <i class="fa-solid fa-house fa-lg"></i>
       </a>
 
-      <a
-          class="btn btn-primary btn-floating m-1"
-          href="#!"
-          role="button"
-      ><i class="fab fa-twitter"></i
-      ></a>
+      <!-- 경기일정 -->
+      <a class="btn m-1" href="/game" role="button">
+        <i class="fa-solid fa-calendar fa-lg"></i>
+      </a>
 
       <!-- Google -->
-      <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #dd4b39;"
-          href="#!"
-          role="button"
-      ><i class="fab fa-google"></i
-      ></a>
+      <a class="btn m-1" href="/" role="button">
+        <i class="fa-solid fa-comment fa-lg"></i>
+      </a>
 
-      <!-- Instagram -->
-      <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #ac2bac;"
-          href="#!"
-          role="button"
-      ><i class="fab fa-instagram"></i
-      ></a>
+      <!-- 출석체크 -->
+      <a class="btn m-1" href="/" role="button">
+        <i class="fa-solid fa-stamp fa-lg"></i>
+      </a>
 
-      <!-- Linkedin -->
-      <a
-          class="btn btn-primary btn-floating m-1"
-          style="background-color: #0082ca;"
-          href="#!"
-          role="button"
-      ><i class="fab fa-linkedin-in"></i
-      ></a>
-      <!-- Github -->
+      <!-- 마이페이지 -->
+      <a class="btn m-1" href="/" role="button">
+        <i class="fa-solid fa-user fa-lg"></i>
+      </a>
 
     </div>
-    <!-- Grid container -->
 
   </footer>
 </template>
@@ -54,14 +39,22 @@
 
 <script>
 export default {
-  name: "MainFooter"
+  name: "MainFooter",
+  data() {
+    return {
+      mainUrl: this.$route.fullPath
+
+    }
+
+
+  }
 }
 </script>
 
 <style scoped>
 footer {
   width: 100vw;
-  height: 60px;
+  height: 10vw;
 }
 
 .btn-holder {
@@ -77,7 +70,6 @@ footer {
 .btn-holder .btn {
   display: flex;
   width: 40px;
-  height: 40px;
   vertical-align: middle;
 }
 

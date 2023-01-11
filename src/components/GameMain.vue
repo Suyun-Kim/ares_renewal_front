@@ -1,108 +1,124 @@
 <template>
-  <div class="container">
-    <main>
-      <section class="py-2 text-center container">
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto mt-2">
-            <h1 class="fw-light fw-bold">경기 일정</h1>
+  <div class="container justify-content-center d-block">
+    <main class="bg-black">
 
-            <p class="lead text-muted">{{ gameInfo.team1 }} vs {{ gameInfo.team2 }}</p>
-            <p class="lead text-muted">{{ date(gameInfo.startDate) }} {{ gameInfo.title }} • {{ gameInfo.location }}</p>
-            <p class="lead text-muted">{{ gameInfo.startTime }} / {{ gameInfo.tardinessTime }}</p>
-            <p>
-              <span class="text-black-50 fw-bold px-0">참석</span>
-              <span class="text-primary fw-bold px-2">{{ gameInfo.voteCount }}</span>
-              <span class="text-black-50 fw-bold px-0">불참</span>
-              <span class="text-danger fw-bold px-2">{{ gameInfo.notVoteCount }}</span>
-              <span class="text-black-50 fw-bold px-0">미투표</span>
-              <span class="text-break fw-bold px-2">{{ gameInfo.noVoteCount }}</span>
-            </p>
-            <div class="text-center">
-              <button class="btn btn-primary my-2 me-2" @click="addVote(gameInfo.idx, true)">참석</button>
-              <button class="btn btn-secondary my-2 ms-2" @click="addVote(gameInfo.idx, false)">불참</button>
-            </div>
-          </div>
+      <div class="w-100 mt-2 mb-4 pt-2 bg-light rounded-pill-2">
+
+        <div class="text-dark">
+
+          <p class="font-monospace mb-0" style="font-size: 2.5em">{{ time(this.gameInfo.startTime) }}</p>
+          <p class="font-monospace mb-0" style="font-size: 1.5em">{{ date(this.gameInfo.startDate) }}</p>
+
         </div>
-      </section>
 
-      <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
+        <div class="font-monospace place text-black fw-bold" style="font-size: 1em">
+          {{ this.$data.gameInfo.title }}
+        </div>
 
-        <label class="list-group-item fw-bold rounded-3 py-3 vote-block">
-          참 석 ( {{ gameInfo.voteCount }}명 )
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team1 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in voteMembers" :key="item">
-              <template v-if="gameInfo.team1 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team2 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in voteMembers" :key="item">
-              <template v-if="gameInfo.team2 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-        </label>
-
-        <label class="list-group-item rounded-3 py-3 not-vote-block">
-          불 참 ( {{ gameInfo.notVoteCount }}명 )
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team1 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in notVoteMembers" :key="item">
-              <template v-if="gameInfo.team1 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team2 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in notVoteMembers" :key="item">
-              <template v-if="gameInfo.team2 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-        </label>
-
-        <label class="list-group-item rounded-3 py-3 no-vote-block">
-          미 투 표 ( {{ gameInfo.notVoteCount }}명 )
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team1 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in noVoteMembers" :key="item">
-              <template v-if="gameInfo.team1 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-          <span class="d-block fw-bold small opacity">
-            {{ gameInfo.team2 }} 팀
-          </span>
-          <span class="d-block small opacity">
-            <template v-for="item in noVoteMembers" :key="item">
-              <template v-if="gameInfo.team2 === item.team">
-                {{ item.memberName }}
-              </template>
-            </template>
-          </span>
-        </label>
+        <div class="mt-2 pb-2">
+          <button class="btn btn-dark fw-bold w-50 me-3" @click="addVote(this.gameInfo.idx, true)">참석</button>
+          <button class="btn btn-outline-dark fw-bold text-dark w-25 ms-md-3" @click="addVote(this.gameInfo.idx, false)">불참</button>
+        </div>
 
       </div>
 
-    </main>
+      <div class="mt-4 w-100">
+        <h3 class="fw-bold text-white ">투표목록</h3>
+      </div>
 
+      <div class="wrap mb-4">
+        <div class="wrapper">
+          <div class="item classification">
+            <p>총원</p>
+          </div>
+          <div class="item classification">
+            <p>참석</p>
+          </div>
+          <div class="item classification">
+            <p>불참</p>
+          </div>
+          <div class="item classification">
+            <p>미투표</p>
+          </div>
+
+          <div class="item personnel"> {{ this.gameInfo.memberCount }}</div>
+          <div class="item personnel"> {{ this.gameInfo.voteCount }}</div>
+          <div class="item personnel"> {{ this.gameInfo.notVoteCount }}</div>
+          <div class="item personnel"> {{ this.gameInfo.noVoteCount }}</div>
+        </div>
+      </div>
+
+      <div id='vote-table' class="d-flex border rounded-pill-2 overflow-scroll bg-white">
+
+        <table>
+
+          <tr>
+            <th class="w-50 bg-black text-white">
+              {{ this.gameInfo.team1 }}
+            </th>
+          </tr>
+
+          <tr>
+            <th class="bg-dark text-white">참석 ( {{ this.team1VoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team1VoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+
+          <tr class="bg-black text-white">
+            <th>불참 ( {{ this.team1NotVoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team1NotVoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+
+          <tr>
+            <th class="bg-light text-black">미투표 ( {{ this.team1NoVoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team1NoVoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+        </table>
+
+        <table>
+
+          <tr>
+            <th class="w-50 bg-black text-white">
+              {{ this.gameInfo.team2 }}
+            </th>
+          </tr>
+
+          <tr class="bg-dark text-white">
+            <th>참석 ( {{ this.team2VoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team2VoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+
+          <tr class="bg-black text-white">
+            <th>불참 ( {{ this.team2NotVoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team2NotVoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+
+          <tr>
+            <th class="bg-light text-black">미투표 ( {{ this.team2NoVoteMembers.length }} 명 )</th>
+          </tr>
+
+          <tr v-for="item in this.team2NoVoteMembers" v-bind:key="item.memberId" class="bg-white">
+            <td class="fw-bold border-bottom"> {{ item.memberName }}</td>
+          </tr>
+
+        </table>
+
+      </div>
+    </main>
   </div>
 </template>
 
@@ -113,25 +129,36 @@ import moment from 'moment';
 
 export default {
   name: "GameMain",
+  props: {
+    gameIdx: {
+      type: String
+    }
+
+  },
   data() {
     return {
       gameInfo: {
-        idx: null,
-        team1: null,
-        team2: null,
-        title: null,
-        location: null,
-        otherTeam: null,
-        startDate: null,
-        startTime: null,
-        tardinessTime: null,
-        voteCount: 0,
-        notVoteCount: 0,
-        noVoteCount: 0,
+        idx: Number,
+        team1: String,
+        team2: String,
+        title: String,
+        location: String,
+        otherTeam: String,
+        startDate: String,
+        startTime: String,
+        tardinessTime: String,
+        memberCount: Number,
+        voteCount: Number,
+        notVoteCount: Number,
+        noVoteCount: Number,
       },
-      voteMembers: [],
-      notVoteMembers: [],
-      noVoteMembers: [],
+      team1VoteMembers: Array,
+      team2VoteMembers: Array,
+      team1NotVoteMembers: Array,
+      team2NotVoteMembers: Array,
+      team1NoVoteMembers: Array,
+      team2NoVoteMembers: Array,
+
     }
   },
   created() {
@@ -143,82 +170,116 @@ export default {
     }
   },
   methods: {
+
     getGameInfo() {
-      http.get("/games")
+
+      http.get(
+          '/games/' + this.gameIdx)
           .then(response => {
-            this.gameInfo = response.data.data
-            this.voteMembers = response.data.data.voteMembers
-            this.notVoteMembers = response.data.data.notVoteMembers
-            this.noVoteMembers = response.data.data.noVoteMembers
+
+            this.gameInfo = response.data.data.gameInfo
+            this.team1VoteMembers = response.data.data.team1VoteList;
+            this.team2VoteMembers = response.data.data.team2VoteList;
+            this.team1NotVoteMembers = response.data.data.team1NotVoteList;
+            this.team2NotVoteMembers = response.data.data.team2NotVoteList;
+            this.team1NoVoteMembers = response.data.data.team1NoVoteList;
+            this.team2NoVoteMembers = response.data.data.team2NoVoteList;
+
+            this.gameInfo.voteCount = (this.team1VoteMembers.length + this.team2VoteMembers.length)
+            this.gameInfo.notVoteCount = (this.team1NotVoteMembers.length + this.team2NotVoteMembers.length)
+            this.gameInfo.noVoteCount = (this.team1NoVoteMembers.length + this.team2NoVoteMembers.length)
+            this.gameInfo.memberCount = (this.gameInfo.voteCount + this.gameInfo.notVoteCount + this.gameInfo.noVoteCount)
+
           })
     },
-    addVote (gameIdx, isVote) {
+    addVote(gameIdx, isVote) {
       const data = {
-        gameIdx : gameIdx,
-        memberIdx : this.$store.state.memberIdx,
-        isVote : isVote
-
+        gameIdx: gameIdx,
+        memberIdx: this.$store.state.memberIdx,
+        isVote: isVote
       }
       http.post("/votes", data)
     },
     date(value) {
       return moment(value).format('YYYY-MM-DD')
-    }
+    },
+    time(value) {
+      return String(value).substring(0, 5);
+    },
   }
 }
 </script>
 
 <style scoped>
 
-@media screen and (max-width: 760px) {
-  .btn-primary {
-    min-width: 100px !important;
-    min-height: 50px;
-  }
-
-  .btn-secondary {
-    min-width: 100px !important;
-    min-height: 50px;
-  }
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 30px;
+  border-radius: 12px;
+  background-color: white;
+  border-color: black;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
-@media screen and (min-width: 760px) {
-  .btn-primary {
-    width: 150px !important;
-    height: 50px;
-  }
-
-  .btn-secondary {
-    width: 150px !important;
-    height: 50px;
-  }
+.wrapper > div {
+  height: 30px;
+  line-height: 30px;
 }
 
-.list-group {
-  max-width: 100%;
-  margin: 4rem auto;
+.wrapper > div:nth-child(1) {
+  border-radius: 12px 0 0 0 / 12px 0 0 0;
 }
 
-[contenteditable]:focus {
-  outline: 0;
+.wrapper > div:nth-child(4) {
+  border-radius: 0 12px 0 0 / 0 12px 0 0;
 }
 
-.vote-block {
-  color: #fff;
-  background-color: var(--bs-blue);
+.wrapper > div:nth-child(5) {
+  border-radius: 0 0 0 12px / 0 0 0 12px;
 }
 
-.not-vote-block {
-  color: #fff;
-  background-color: var(--bs-red);
+.wrapper > div:nth-child(8) {
+  border-radius: 0 0 12px 0 / 0 0 12px 0;
 }
 
-.no-vote-block {
-  color: #fff;
-  background-color: var(--bs-gray);
+.classification {
+  border-color: white;
+  background-color: #5c636a;
+  color: white;
+
+}
+
+.item {
+  border-color: white;
+}
+
+.personnel {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 
+
+#vote-table {
+  width: 100%;
+  height: 35vh;
+  max-height: 350px;
+}
+
+#vote-table table {
+  width: 50%;
+}
+
+#vote-table table th {
+  width: 50%;
+}
+
+#vote-table table tr {
+  height: 3vh;
+
+}
 
 
 </style>

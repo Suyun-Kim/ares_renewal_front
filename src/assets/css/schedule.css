@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean');
+
+body, header, h1, h2, h3, h4, p, section, div {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', 'Noto Sans KR', sans-serif;
+}
+
+body {
+    text-align: center;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 240px;
+    color: #fff;
+    text-align: center;
+    z-index: -999;
+}
+
+h1 {
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: 700;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+}
+
+section {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    right: 0;
+    width: 90%;
+    height: 65%;
+    margin: 0 auto;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-row-gap: 5px;
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 12px;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.date {
+    margin-top: 0.5em;
+}
+
+.date p:nth-child(1) {
+    font-size: 80px;
+    font-weight: 700;
+}
+
+.date p:nth-child(2) {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.place {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.grid-container2 {
+    display: grid;
+    grid-template-columns: auto 20px auto;
+    box-sizing: border-box;
+    height: 80px;
+    padding: 0;
+}
+
+.grid-container2 div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#teamR div, #teamS div {
+    border-radius: 50%;
+    width: 2.3em;
+    height: 2.3em;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 1.7em;
+}
+
+#addIcon div {
+    display: inline-block;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 30px;
+    margin-top: 20px;
+    text-shadow: 2px 3px 3px rgba(0, 0, 0, 0.2);
+    background-color: #992853;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+#vs {
+    font-weight: 700;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#teamR div {
+    background-color: #ffffff;
+}
+
+#teamS div {
+    background-color: #ffffff;
+}
+
+.grid-container3 {
+    display: grid;
+    grid-template-columns: auto auto;
+    box-sizing: border-box;
+    /* border-radius: 0px 0px 12px 12px / 0px 0px 12px 12px; */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    height: 80px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: white;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.baddge {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    height: 60px;
+    background-color: #ffffff;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    border-radius: 0px 0px 12px 12px/0px 0px 12px 12px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* menu */
+#menu a {
+    text-decoration: none;
+    color: gray;
+}
+
+#menu {
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#menu ul {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+#menu ul li {
+    padding-top: 15px;
+    height: 100px;
+    cursor: pointer;
+}
+
+#menu ul .selected {
+    color: #000;
+}
+
+@font-face {
+    font-family: 'fontello';
+    src: url('../../assets/fonts/fontello.eot?7449304');
+    src: url('../../assets/fonts/fontello.eot?7449304#iefix') format('embedded-opentype'),
+		url('../../assets/fonts/fontello.woff?7449304') format('woff'),
+		url('../../assets/fonts/fontello.ttf?7449304') format('truetype'),
+    	url('../../assets/fonts/fontello.svg?7449304#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
